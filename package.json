@@ -1,5 +1,5 @@
 {
-  "name": "api-productos",
+  "name": "login-api",
   "version": "1.0.0",
   "description": "Api Rest basica de productos",
   "main": "src/server.js",
