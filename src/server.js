@@ -1,24 +1,30 @@
 // Importa el framework Express
 const express = require("express");
 
-// Importa la librería dotenv para leer las variables del archivo .env
+// Importa dotenv para leer el archivo .env
 require("dotenv").config();
 
-// Crea la aplicación de Express
+// Crea la aplicación
 const app = express();
 
-// Permite que el servidor reciba datos en formato JSON
+// Importa las rutas de autenticación
+const authRoutes = require("./routes/authRoutes");
+
+// Middleware para recibir datos JSON
 app.use(express.json());
 
-// Define el puerto donde se ejecutará el servidor
-const PORT = process.env.PORT || 3000;
-
-// Ruta de prueba para verificar que el servidor funciona
+// Ruta principal
 app.get("/", (req, res) => {
     res.json({
-        mensaje: "Bienvenido a la API de Registro e Inicio de Sesión"
+        mensaje: "API de Registro e Inicio de Sesión"
     });
 });
+
+// Registra las rutas de autenticación
+app.use("/api", authRoutes);
+
+// Puerto del servidor
+const PORT = process.env.PORT || 3000;
 
 // Inicia el servidor
 app.listen(PORT, () => {
